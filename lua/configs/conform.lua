@@ -5,7 +5,7 @@ local options = {
     html = { "prettier" },
     javascript = { "prettier" },
     javascriptreact = { "prettier" },
-    python = { "black" },
+    python = { "black", "isort" },
   },
 
   format_on_save = {

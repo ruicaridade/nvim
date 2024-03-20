@@ -7,18 +7,15 @@ return {
     end,
   },
   {
-    "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
-        "lua-language-server",
-        "stylua",
-        "html-lsp",
-        "css-lsp",
-        "prettier",
-        "pyright",
-        "mypy",
-      },
+    "jay-babu/mason-null-ls.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+      "williamboman/mason.nvim",
+      "nvimtools/none-ls.nvim",
     },
+    config = function()
+      require "configs.mason"
+    end,
   },
   {
     "nvim-treesitter/nvim-treesitter",
