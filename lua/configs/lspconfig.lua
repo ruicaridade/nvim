@@ -5,6 +5,7 @@ local capabilities = require("nvchad.configs.lspconfig").capabilities
 local servers = {
   -- JS
   tsserver = {},
+  tailwindcss = {},
   -- css = {},
   html = {},
 

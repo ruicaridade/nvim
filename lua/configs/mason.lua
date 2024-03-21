@@ -6,6 +6,7 @@ require("mason").setup {
     "css-lsp",
     "prettier",
     "typescript-language-server",
+    "tailwindcss-language-server",
     "flake8",
     "isort",
     "mypy",
