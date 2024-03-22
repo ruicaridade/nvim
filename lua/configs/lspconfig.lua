@@ -20,6 +20,7 @@ local servers = {
       },
     },
   },
+  ruff_lsp = {},
 }
 
 for name, opts in pairs(servers) do
