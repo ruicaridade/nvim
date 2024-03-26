@@ -25,28 +25,7 @@ require("mason-null-ls").setup {
     completion = true,
     hover = true,
   },
-  handlers = {
-    mypy = function()
-      null_ls.register(null_ls.builtins.diagnostics.mypy.with {
-        prefer_local = ".venv/bin",
-      })
-    end,
-    flake8 = function()
-      null_ls.register(null_ls.builtins.diagnostics.flake8.with {
-        prefer_local = ".venv/bin",
-      })
-    end,
-    black = function()
-      null_ls.register(null_ls.builtins.formatting.black.with {
-        prefer_local = ".venv/bin",
-      })
-    end,
-    isort = function()
-      null_ls.register(null_ls.builtins.formatting.isort.with {
-        prefer_local = ".venv/bin",
-      })
-    end,
-  },
+  handlers = {},
 }
 
 null_ls.setup()
