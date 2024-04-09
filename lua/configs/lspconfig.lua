@@ -6,7 +6,6 @@ local servers = {
   -- JS
   tsserver = {},
   tailwindcss = {},
-  -- css = {},
   html = {},
 
   -- Python
@@ -18,6 +17,14 @@ local servers = {
           typeCheckingMode = "off",
         },
       },
+    },
+  },
+
+  -- Go
+  gopls = {
+    completeUnimported = true,
+    analyses = {
+      unusedparams = true,
     },
   },
 }
