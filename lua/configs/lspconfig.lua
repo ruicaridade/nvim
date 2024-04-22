@@ -27,6 +27,9 @@ local servers = {
       unusedparams = true,
     },
   },
+
+  -- SQL
+  sqls = {},
 }
 
 for name, opts in pairs(servers) do

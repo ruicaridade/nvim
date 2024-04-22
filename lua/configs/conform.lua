@@ -8,7 +8,8 @@ local options = {
     typescript = { "prettier" },
     typescriptreact = { "prettier" },
     python = { "black", "isort" },
-    go = { "goimports", "gofmt" },
+    go = { "goimports-reviser", "gofmt" },
+    sql = { "sql_formatter" },
   },
 
   format_on_save = {
