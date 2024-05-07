@@ -30,6 +30,9 @@ local servers = {
 
   -- SQL
   sqls = {},
+
+  -- PHP
+  intelephense = {},
 }
 
 for name, opts in pairs(servers) do

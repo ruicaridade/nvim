@@ -12,6 +12,7 @@ require("mason").setup {
     "mypy",
     "pyright",
     "gopls",
+    "intelephense",
   },
 }
 
