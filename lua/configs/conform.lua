@@ -11,6 +11,7 @@ local options = {
     go = { "goimports-reviser", "gofmt" },
     sql = { "sql_formatter" },
     php = { "pint", "blade-formatter" },
+    elixir = { "mix" },
   },
 
   format_on_save = {

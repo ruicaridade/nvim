@@ -13,6 +13,7 @@ require("mason").setup {
     "pyright",
     "gopls",
     "intelephense",
+    "elixirls",
   },
 }
 
