@@ -10,7 +10,7 @@ local options = {
     python = { "black", "isort" },
     go = { "goimports-reviser", "gofmt" },
     sql = { "sql_formatter" },
-    php = { "pint" },
+    php = { "pint", "blade-formatter" },
   },
 
   format_on_save = {
