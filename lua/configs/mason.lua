@@ -29,14 +29,14 @@ require("mason-null-ls").setup {
     hover = true,
   },
   handlers = {
-    mypy = function(source_name, methods)
-      null_ls.register(null_ls.builtins.diagnostics.mypy.with {
-        extra_args = function()
-          local virtual = os.getenv "VIRTUAL_ENV" or os.getenv "CONDA_PREFIX" or "/usr"
-          return { "--python-executable", virtual .. "/bin/python3" }
-        end,
-      })
-    end,
+    -- mypy = function(source_name, methods)
+    --   null_ls.register(null_ls.builtins.diagnostics.mypy.with {
+    --     command = function()
+    --       local virtual = os.getenv "VIRTUAL_ENV" or os.getenv "CONDA_PREFIX" or "/usr"
+    --       return virtual .. "/bin/mypy"
+    --     end,
+    --   })
+    -- end,
   },
 }
 
