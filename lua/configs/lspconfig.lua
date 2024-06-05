@@ -10,13 +10,9 @@ local servers = {
 
   -- Python
   pyright = {
-    settings = {
-      python = {
-        analysis = {
-          autoSearchPaths = true,
-          typeCheckingMode = "off",
-        },
-      },
+    analysis = {
+      autoSearchPaths = true,
+      typeCheckingMode = "basic",
     },
   },
 

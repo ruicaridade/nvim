@@ -10,7 +10,7 @@ require("mason").setup {
     "flake8",
     "isort",
     "mypy",
-    "pyright",
+    "basedpyright",
     "gopls",
     "intelephense",
     "elixirls",
@@ -28,16 +28,7 @@ require("mason-null-ls").setup {
     completion = true,
     hover = true,
   },
-  handlers = {
-    -- mypy = function(source_name, methods)
-    --   null_ls.register(null_ls.builtins.diagnostics.mypy.with {
-    --     command = function()
-    --       local virtual = os.getenv "VIRTUAL_ENV" or os.getenv "CONDA_PREFIX" or "/usr"
-    --       return virtual .. "/bin/mypy"
-    --     end,
-    --   })
-    -- end,
-  },
+  handlers = {},
 }
 
 null_ls.setup()
