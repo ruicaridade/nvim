@@ -10,9 +10,13 @@ local servers = {
 
   -- Python
   pyright = {
-    analysis = {
-      autoSearchPaths = true,
-      typeCheckingMode = "basic",
+    settings = {
+      python = {
+        analysis = {
+          autoSearchPaths = true,
+          typeCheckingMode = "off",
+        },
+      },
     },
   },
 
@@ -29,11 +33,6 @@ local servers = {
 
   -- PHP
   intelephense = {},
-
-  -- Elixir
-  elixirls = {
-    cmd = { "/home/ruicaridade/elixir/language_server.sh" },
-  },
 }
 
 for name, opts in pairs(servers) do

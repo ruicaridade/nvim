@@ -2,6 +2,9 @@ require "nvchad.mappings"
 
 local map = vim.keymap.set
 
+-- LSP
+map("n", "K", vim.lsp.buf.hover, { desc = "LSP Hover" })
+
 -- Telescope
 local telescope = require "telescope.builtin"
 map("n", "<leader>gr", telescope.lsp_references, { desc = "Telescope Goto References" })

@@ -10,7 +10,7 @@ require("mason").setup {
     "flake8",
     "isort",
     "mypy",
-    "basedpyright",
+    "pyright",
     "gopls",
     "intelephense",
     "elixirls",
