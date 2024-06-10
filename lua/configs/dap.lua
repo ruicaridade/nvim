@@ -2,6 +2,7 @@ local dap = require "dap"
 local dapui = require "dapui"
 
 require("mason-nvim-dap").setup {
+  automatic_installation = true,
   automatic_setup = true,
   handlers = {},
   ensure_installed = {
@@ -41,5 +42,9 @@ dap.listeners.after.event_initialized["dapui_config"] = dapui.open
 dap.listeners.before.event_terminated["dapui_config"] = dapui.close
 dap.listeners.before.event_exited["dapui_config"] = dapui.close
 
+local dap_python = require "dap-python"
+dap_python.setup "~/.virtualenvs/debugpy/bin/python"
+dap_python.test_runner = "pytest"
+dap_python.default_port = 38000
+
 require("dap.ext.vscode").load_launchjs(nil, {})
-require("dap-python").setup "~/.virtualenvs/debugpy/bin/python"
