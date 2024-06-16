@@ -12,6 +12,7 @@ local options = {
     sql = { "sql_formatter" },
     php = { "pint", "blade-formatter" },
     elixir = { "mix" },
+    htmldjango = { "djlint" },
   },
 
   format_on_save = {

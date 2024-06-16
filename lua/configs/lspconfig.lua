@@ -19,6 +19,7 @@ local servers = {
       },
     },
   },
+  jinja_lsp = {},
 
   -- Go
   gopls = {

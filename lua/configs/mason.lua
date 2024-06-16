@@ -14,6 +14,7 @@ require("mason").setup {
     "gopls",
     "intelephense",
     "elixirls",
+    "jinja-lsp",
   },
 }
 
