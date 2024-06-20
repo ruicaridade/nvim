@@ -34,6 +34,11 @@ local servers = {
 
   -- PHP
   intelephense = {},
+
+  -- Elixir
+  elixirls = {
+    cmd = { vim.fn.expand "~/elixir/language_server.sh" },
+  },
 }
 
 for name, opts in pairs(servers) do
