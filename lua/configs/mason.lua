@@ -2,11 +2,9 @@ require("mason").setup {
   ensure_installed = {
     "lua-language-server",
     "stylua",
-    "html-lsp",
     "css-lsp",
     "prettier",
     "typescript-language-server",
-    "tailwindcss-language-server",
     "flake8",
     "isort",
     "mypy",
@@ -15,6 +13,10 @@ require("mason").setup {
     "intelephense",
     "elixirls",
     "jinja-lsp",
+    "templ",
+    "htmx",
+    "tailwindcss",
+    "html",
   },
 }
 

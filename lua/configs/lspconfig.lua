@@ -3,10 +3,18 @@ local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
 
 local servers = {
+  -- Web
+  tailwindcss = {
+    filetypes = { "templ", "astro", "javascript", "typescript", "react", "html" },
+    init_options = { userLanguages = { templ = "html" } },
+  },
+  htmx = {
+    filetypes = { "html", "templ" },
+  },
+  html = {},
+
   -- JS
   tsserver = {},
-  tailwindcss = {},
-  html = {},
 
   -- Python
   pyright = {
@@ -28,6 +36,7 @@ local servers = {
       unusedparams = true,
     },
   },
+  templ = {},
 
   -- SQL
   sqls = {},
