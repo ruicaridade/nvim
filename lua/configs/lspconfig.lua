@@ -15,6 +15,7 @@ local servers = {
 
   -- JS
   tsserver = {},
+  astro = {},
 
   -- Python
   pyright = {

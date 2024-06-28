@@ -17,6 +17,7 @@ require("mason").setup {
     "htmx",
     "tailwindcss",
     "html",
+    "astro",
   },
 }
 
