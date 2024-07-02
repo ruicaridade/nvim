@@ -7,6 +7,7 @@ local options = {
     javascriptreact = { "prettier" },
     typescript = { "prettier" },
     typescriptreact = { "prettier" },
+    json = { "prettier" },
     python = { "black", "isort" },
     go = { "goimports-reviser", "gofmt" },
     sql = { "sql_formatter" },
