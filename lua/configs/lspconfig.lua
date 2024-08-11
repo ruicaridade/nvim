@@ -49,6 +49,9 @@ local servers = {
   elixirls = {
     cmd = { vim.fn.expand "~/elixir/language_server.sh" },
   },
+
+  -- Svelte
+  svelte = {},
 }
 
 for name, opts in pairs(servers) do
