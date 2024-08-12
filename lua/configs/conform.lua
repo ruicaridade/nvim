@@ -12,6 +12,7 @@ local options = {
     json = { "prettier" },
     python = { "black", "isort" },
     go = { "goimports-reviser", "gofmt" },
+    templ = { "templ" },
     sql = { "sql_formatter" },
     php = { "pint", "blade-formatter" },
     elixir = { "mix" },
