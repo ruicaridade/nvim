@@ -1,5 +1,7 @@
 require "nvchad.options"
 
+vim.o.backupcopy = "yes"
+
 vim.wo.relativenumber = true
 
 local o = vim.o
