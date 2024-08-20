@@ -18,6 +18,7 @@ require("mason").setup {
     "tailwindcss",
     "html",
     "astro",
+    "eslint",
   },
 }
 
