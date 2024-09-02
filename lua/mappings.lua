@@ -36,6 +36,9 @@ end, { desc = "Harpoon Select 4" })
 map("n", "<C-t>5", function()
   harpoon:list():select(5)
 end, { desc = "Harpoon Select 5" })
+map("n", "<C-t>6", function()
+  harpoon:list():select(6)
+end, { desc = "Harpoon Select 6" })
 
 -- Misc
 map("n", ";", ":", { desc = "CMD enter command mode" })
