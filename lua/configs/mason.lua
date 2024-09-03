@@ -23,6 +23,7 @@ require("mason").setup {
 }
 
 local null_ls = require "null-ls"
+null_ls.setup()
 
 require("mason-null-ls").setup {
   automatic_installation = false,
@@ -35,5 +36,3 @@ require("mason-null-ls").setup {
   },
   handlers = {},
 }
-
-null_ls.setup()
