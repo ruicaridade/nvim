@@ -26,7 +26,7 @@ local null_ls = require "null-ls"
 null_ls.setup()
 
 require("mason-null-ls").setup {
-  automatic_installation = false,
+  automatic_installation = true,
   methods = {
     diagnostics = true,
     formatting = false, -- This is handled by conform
