@@ -14,7 +14,7 @@ local servers = {
   html = {},
 
   -- JS
-  tsserver = {},
+  ts_ls = {},
   astro = {},
   eslint = {},
 
