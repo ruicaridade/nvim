@@ -15,10 +15,10 @@ map("n", "<leader>fr", telescope.lsp_references, { desc = "Telescope Find Refere
 -- Harpoon
 local harpoon = require "harpoon"
 
-map("n", "<leader>ha", function()
+map("n", "<leader>ta", function()
   harpoon:list():add()
 end, { desc = "Harpoon Add" })
-map("n", "<leader>ht", function()
+map("n", "<leader>tt", function()
   harpoon.ui:toggle_quick_menu(harpoon:list())
 end, { desc = "Harpoon Toggle" })
 map("n", "<C-t>1", function()

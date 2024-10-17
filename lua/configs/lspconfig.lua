@@ -24,7 +24,7 @@ local servers = {
       python = {
         analysis = {
           autoSearchPaths = true,
-          typeCheckingMode = "off",
+          typeCheckingMode = "basic",
         },
       },
     },
