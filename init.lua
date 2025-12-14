@@ -41,6 +41,8 @@ vim.pack.add({
 
   -- AI
   'https://github.com/NickvanDyke/opencode.nvim',
+  'https://github.com/zbirenbaum/copilot.lua',
+  'https://github.com/copilotlsp-nvim/copilot-lsp',
 
   -- Cmp
   'https://github.com/saghen/blink.cmp',
@@ -117,6 +119,25 @@ require('arrow').setup({
   leader_key = ';'
 })
 
+-- AI
+require('copilot').setup({
+  suggestion = {
+    enabled = true,
+    auto_trigger = true,
+    hide_during_completion = false,
+    debounce = 0,
+  },
+  nes = {
+    enabled = true,
+    auto_trigger = true,
+    keymap = {
+      accept = "<M-l>",
+      accept_and_goto = "<M-n>",
+      dismiss = "<Esc>",
+    },
+  },
+})
+
 -- Keybinds
 local map = vim.keymap.set
 
@@ -147,7 +168,6 @@ map({ "n", "x" }, "<leader>aa", function() openc.ask("@this: ", { submit = true 
 map({ "n", "x" }, "<leader>ae", function() openc.select() end, { desc = "Execute opencode action…" })
 map({ "n", "x" }, "<leader>al", function() openc.prompt("@this") end, { desc = "Add to opencode" })
 map({ "n", "t" }, "<leader>at", function() openc.toggle() end, { desc = "Toggle opencode" })
-map("n", "<S-C-u>", function() openc.command("session.half.page.up") end, { desc = "opencode page up" })
-map("n", "<S-C-d>", function() openc.command("session.half.page.down") end, { desc = "opencode page down" })
-map('n', '+', '<C-a>', { desc = 'Increment', noremap = true })
-map('n', '-', '<C-x>', { desc = 'Decrement', noremap = true })
+
+local copilot = require('copilot.suggestion')
+map({ "i" }, "<M-l>", function() copilot:accept() end, { desc = "Accept Copilot suggestion" })

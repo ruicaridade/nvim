@@ -12,6 +12,14 @@
       "rev": "a7ece704fa518312a81611bd4fda192e12706d3d",
       "src": "https://www.github.com/olimorris/codecompanion.nvim"
     },
+    "copilot-lsp": {
+      "rev": "884034b23c3716d55b417984ad092dc2b011115b",
+      "src": "https://github.com/copilotlsp-nvim/copilot-lsp"
+    },
+    "copilot.lua": {
+      "rev": "508d8b00390ff3046323f61187a57069910c6e17",
+      "src": "https://github.com/zbirenbaum/copilot.lua"
+    },
     "gitsigns.nvim": {
       "rev": "5813e4878748805f1518cee7abb50fd7205a3a48",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
