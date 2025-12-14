@@ -21,28 +21,32 @@ vim.o.shiftround = true
 -- Plugins
 vim.pack.add({
   -- Theme
-  { src = 'https://github.com/rose-pine/neovim' },
+  'https://github.com/rose-pine/neovim',
 
   -- Misc & utilities
-  { src = 'https://github.com/nvim-mini/mini.nvim' },
-  { src = 'https://github.com/folke/snacks.nvim' },
+  'https://github.com/nvim-mini/mini.nvim',
+  'https://github.com/folke/snacks.nvim',
+  'https://github.com/nvim-lua/plenary.nvim',
 
   -- Automatically set indentation based on file
-  { src = 'https://github.com/tpope/vim-sleuth' },
+  'https://github.com/tpope/vim-sleuth',
 
   -- LSP
-  { src = 'https://github.com/neovim/nvim-lspconfig' },
-  { src = 'https://github.com/mason-org/mason.nvim' },
-  { src = 'https://github.com/mason-org/mason-lspconfig.nvim' },
+  'https://github.com/neovim/nvim-lspconfig',
+  'https://github.com/mason-org/mason.nvim',
+  'https://github.com/mason-org/mason-lspconfig.nvim',
 
   -- AI
-  { src = 'https://github.com/NickvanDyke/opencode.nvim' },
+  'https://github.com/NickvanDyke/opencode.nvim',
 
   -- Cmp
-  { src = 'https://github.com/saghen/blink.cmp' },
+  'https://github.com/saghen/blink.cmp',
 
   -- Git
-  { src = 'https://github.com/lewis6991/gitsigns.nvim' },
+  'https://github.com/lewis6991/gitsigns.nvim',
+
+  -- Navigation
+  'https://github.com/otavioschwanck/arrow.nvim'
 })
 
 -- Theme
@@ -105,36 +109,42 @@ require('gitsigns').setup({
   current_line_blame = true,
 })
 
+-- Harpoon
+require('arrow').setup({
+  leader_key = ';'
+})
+
+-- Keybinds
+local map = vim.keymap.set
+
 -- Keybinds: LSP
-vim.keymap.set('n', '<leader>lm', ':Mason<CR>')
-vim.keymap.set('n', '<leader>ff', vim.lsp.buf.format)
-vim.keymap.set('n', 'gd', function() Snacks.picker.lsp_definitions() end, { desc = 'Goto Definition' })
-vim.keymap.set('n', 'gD', function() Snacks.picker.lsp_declarations() end, { desc = 'Goto Declaration' })
-vim.keymap.set('n', 'gr', function() Snacks.picker.lsp_references() end, { nowait = true, desc = 'References' })
+map('n', '<leader>lm', ':Mason<CR>')
+map('n', '<leader>ff', vim.lsp.buf.format)
+map('n', 'gd', function() Snacks.picker.lsp_definitions() end, { desc = 'Goto Definition' })
+map('n', 'gD', function() Snacks.picker.lsp_declarations() end, { desc = 'Goto Declaration' })
+map('n', 'gr', function() Snacks.picker.lsp_references() end, { nowait = true, desc = 'References' })
 
 -- Keybinds: Find
-vim.keymap.set('n', '<leader>sf', function() Snacks.picker.files() end, { desc = 'Search files' })
-vim.keymap.set('n', '<leader>sg', function() Snacks.picker.grep() end, { desc = 'Search Grep' })
-vim.keymap.set('n', '<leader>sb', function() Snacks.picker.buffers() end, { desc = 'Search Buffers' })
-vim.keymap.set('n', '<leader>ss', function() Snacks.picker.lsp_symbols() end, { desc = 'Search Symbols' })
-vim.keymap.set('n', '<leader>sS', function() Snacks.picker.lsp_workspace_symbols() end,
-  { desc = 'Search Workspace Symbols' })
+map('n', '<leader>sf', function() Snacks.picker.files() end, { desc = 'Search files' })
+map('n', '<leader>sg', function() Snacks.picker.grep() end, { desc = 'Search Grep' })
+map('n', '<leader>sb', function() Snacks.picker.buffers() end, { desc = 'Search Buffers' })
+map('n', '<leader>ss', function() Snacks.picker.lsp_symbols() end, { desc = 'Search Symbols' })
+map('n', '<leader>sS', function() Snacks.picker.lsp_workspace_symbols() end, { desc = 'Search Workspace Symbols' })
 
 -- Keybinds: File explorer
-vim.keymap.set('n', '<leader>e', function() Snacks.explorer() end)
+map('n', '<leader>e', function() Snacks.explorer() end)
 
 -- Keybinds: Git
-vim.keymap.set('n', '<leader>gg', function() Snacks.lazygit() end)
-vim.keymap.set('n', '<leader>gb', ':Gitsigns blame<CR>')
+map('n', '<leader>gg', function() Snacks.lazygit() end)
+map('n', '<leader>gb', ':Gitsigns blame<CR>')
 
 -- Keybinds: AI
 local openc = require('opencode')
-vim.keymap.set({ "n", "x" }, "<leader>aa", function() openc.ask("@this: ", { submit = true }) end,
-  { desc = "Ask opencode" })
-vim.keymap.set({ "n", "x" }, "<leader>ae", function() openc.select() end, { desc = "Execute opencode action…" })
-vim.keymap.set({ "n", "x" }, "<leader>al", function() openc.prompt("@this") end, { desc = "Add to opencode" })
-vim.keymap.set({ "n", "t" }, "<leader>at", function() openc.toggle() end, { desc = "Toggle opencode" })
-vim.keymap.set("n", "<S-C-u>", function() openc.command("session.half.page.up") end, { desc = "opencode page up" })
-vim.keymap.set("n", "<S-C-d>", function() openc.command("session.half.page.down") end, { desc = "opencode page down" })
-vim.keymap.set('n', '+', '<C-a>', { desc = 'Increment', noremap = true })
-vim.keymap.set('n', '-', '<C-x>', { desc = 'Decrement', noremap = true })
+map({ "n", "x" }, "<leader>aa", function() openc.ask("@this: ", { submit = true }) end, { desc = "Ask opencode" })
+map({ "n", "x" }, "<leader>ae", function() openc.select() end, { desc = "Execute opencode action…" })
+map({ "n", "x" }, "<leader>al", function() openc.prompt("@this") end, { desc = "Add to opencode" })
+map({ "n", "t" }, "<leader>at", function() openc.toggle() end, { desc = "Toggle opencode" })
+map("n", "<S-C-u>", function() openc.command("session.half.page.up") end, { desc = "opencode page up" })
+map("n", "<S-C-d>", function() openc.command("session.half.page.down") end, { desc = "opencode page down" })
+map('n', '+', '<C-a>', { desc = 'Increment', noremap = true })
+map('n', '-', '<C-x>', { desc = 'Decrement', noremap = true })
