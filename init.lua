@@ -18,6 +18,9 @@ vim.o.tabstop = 2
 vim.o.smartindent = true
 vim.o.shiftround = true
 
+-- Clipboard
+vim.api.nvim_set_option('clipboard', 'unnamedplus')
+
 -- Plugins
 vim.pack.add({
   -- Theme
