@@ -79,14 +79,12 @@ require('snacks').setup({
   input = { enabled = true },
   picker = { enabled = true },
   statuscolumn = { enabled = true },
+  rename = { enabled = true },
+  notifier = { enabled = true },
   indent = {
     enabled = true,
-    animate = {
-      enabled = false
-    },
-    scope = {
-      enabled = false
-    }
+    animate = { enabled = false },
+    scope = { enabled = false },
   }
 })
 
@@ -95,6 +93,18 @@ require('mason').setup()
 require('mason-lspconfig').setup({
   ensure_installed = { 'copilot', 'lua_ls', 'pyright', 'ts_ls', 'rust_analyzer' }
 })
+
+-- Diagnostics
+vim.diagnostic.config({
+  virtual_text = false, -- Turn off inline diagnostics
+})
+
+vim.api.nvim_create_autocmd('CursorHold', {
+  callback = function()
+    vim.diagnostic.open_float(nil, { focus = false })
+  end
+})
+vim.o.updatetime = 300
 
 -- Cmp
 require('blink.cmp').setup({
@@ -138,6 +148,7 @@ map('n', '<leader>ff', vim.lsp.buf.format)
 map('n', 'gd', function() Snacks.picker.lsp_definitions() end, { desc = 'Goto Definition' })
 map('n', 'gD', function() Snacks.picker.lsp_declarations() end, { desc = 'Goto Declaration' })
 map('n', 'gr', function() Snacks.picker.lsp_references() end, { nowait = true, desc = 'References' })
+map('n', '<leader>rn', vim.lsp.buf.rename, { nowait = true, desc = 'Rename' })
 
 -- Keybinds: Find
 map('n', '<leader>sf', function() Snacks.picker.files() end, { desc = 'Search files' })
@@ -162,3 +173,18 @@ map({ "n", "t" }, "<leader>at", function() openc.toggle() end, { desc = "Toggle 
 
 local copilot = require('copilot.suggestion')
 map({ "i" }, "<M-l>", function() copilot:accept() end, { desc = "Accept Copilot suggestion" })
+
+-- Keybinds: Diagnostics
+map('n', '<leader>sd', function() Snacks.picker.diagnostics() end, { desc = 'Show Diagnostics' })
+map('n', '<leader>sD', function() Snacks.picker.diagnostics_buffer() end, { desc = 'Show Buffer Diagnostics' })
+map('n', '<leader>dd', ':lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })
+map('n', '<leader>dn', ':lua vim.diagnostic.goto_next()<CR>', { noremap = true, silent = true })
+map('n', '<leader>dp', ':lua vim.diagnostic.goto_prev()<CR>', { noremap = true, silent = true })
+
+-- Event: LSP rename on file rename
+vim.api.nvim_create_autocmd("User", {
+  pattern = "MiniFilesActionRename",
+  callback = function(event)
+    Snacks.rename.on_rename_file(event.data.from, event.data.to)
+  end,
+})
