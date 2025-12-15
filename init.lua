@@ -43,9 +43,8 @@ vim.pack.add({
   'https://github.com/mason-org/mason-lspconfig.nvim',
 
   -- AI
-  'https://github.com/NickvanDyke/opencode.nvim',
   'https://github.com/zbirenbaum/copilot.lua',
-  'https://github.com/copilotlsp-nvim/copilot-lsp',
+  'https://github.com/folke/sidekick.nvim',
 
   -- Cmp
   'https://github.com/saghen/blink.cmp',
@@ -128,6 +127,15 @@ require('copilot').setup({
     debounce = 0,
   },
 })
+vim.g.sidekick_nes = true
+require('sidekick').setup({
+  cli = {
+    mux = {
+      backend = 'tmux',
+      enabled = true,
+    }
+  }
+})
 
 -- Keybinds
 local map = vim.keymap.set
@@ -156,11 +164,13 @@ map('n', '<leader>gg', function() Snacks.lazygit() end)
 map('n', '<leader>gb', ':Gitsigns blame<CR>')
 
 -- Keybinds: AI
-local openc = require('opencode')
-map({ "n", "x" }, "<leader>aa", function() openc.ask("@this: ", { submit = true }) end, { desc = "Ask opencode" })
-map({ "n", "x" }, "<leader>ae", function() openc.select() end, { desc = "Execute opencode action…" })
-map({ "n", "x" }, "<leader>al", function() openc.prompt("@this") end, { desc = "Add to opencode" })
-map({ "n", "t" }, "<leader>at", function() openc.toggle() end, { desc = "Toggle opencode" })
+local sidekick_cli = require('sidekick.cli')
+map({ "n", "x" }, "<leader>af", function() sidekick_cli.send({ msg = "{file}" }) end, { desc = "" })
+map({ "n", "x" }, "<leader>al", function() sidekick_cli.send({ msg = "{selection}" }) end, { desc = "" })
+map({ "n", "t" }, "<leader>aa", function() sidekick_cli.toggle() end, { desc = "Sidekick Toggle" })
+
+local sidekick = require('sidekick')
+map({ "i", "n" }, "<M-n>", function() sidekick.nes_jump_or_apply() end, { desc = "Accept Next Edit Suggestion" })
 
 local copilot = require('copilot.suggestion')
 map({ "i" }, "<M-l>", function() copilot:accept() end, { desc = "Accept Copilot suggestion" })
