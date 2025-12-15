@@ -93,7 +93,7 @@ require('snacks').setup({
 -- LSP
 require('mason').setup()
 require('mason-lspconfig').setup({
-  ensure_installed = { 'lua_ls', 'pyright', 'ts_ls', 'rust_analyzer' }
+  ensure_installed = { 'copilot', 'lua_ls', 'pyright', 'ts_ls', 'rust_analyzer' }
 })
 
 -- Cmp
@@ -126,15 +126,6 @@ require('copilot').setup({
     auto_trigger = true,
     hide_during_completion = false,
     debounce = 0,
-  },
-  nes = {
-    enabled = true,
-    auto_trigger = true,
-    keymap = {
-      accept = "<M-l>",
-      accept_and_goto = "<M-n>",
-      dismiss = "<Esc>",
-    },
   },
 })
 
