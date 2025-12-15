@@ -28,6 +28,10 @@
       "rev": "1bc17e3e42ea3c46b33c0bbad6a880792692a1b3",
       "src": "https://github.com/ThePrimeagen/harpoon"
     },
+    "lualine.nvim": {
+      "rev": "47f91c416daef12db467145e16bed5bbfe00add8",
+      "src": "https://github.com/nvim-lualine/lualine.nvim"
+    },
     "mason-lspconfig.nvim": {
       "rev": "c55bd8a8fb191e24176c206a7af1dd51ce7276a5",
       "src": "https://github.com/mason-org/mason-lspconfig.nvim"
@@ -40,9 +44,17 @@
       "rev": "5193329d510a68f1f5bf189960642c925c177a3a",
       "src": "https://github.com/ravitemer/mcphub.nvim"
     },
+    "mini.icons": {
+      "rev": "ff2e4f1d29f659cc2bad0f9256f2f6195c6b2428",
+      "src": "https://github.com/nvim-mini/mini.icons"
+    },
     "mini.nvim": {
       "rev": "6bd3a01aaf7d248aea1b78aacdd5d44bffa002c1",
       "src": "https://github.com/nvim-mini/mini.nvim"
+    },
+    "mini.pairs": {
+      "rev": "d5a29b6254dad07757832db505ea5aeab9aad43a",
+      "src": "https://github.com/nvim-mini/mini.pairs"
     },
     "neo-tree.nvim": {
       "rev": "7a6f14c6edde0921333005cd738309b70138964b",
