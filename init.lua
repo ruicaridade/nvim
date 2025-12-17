@@ -86,7 +86,7 @@ require('snacks').setup({
 -- LSP
 require('mason').setup()
 require('mason-lspconfig').setup({
-  ensure_installed = { 'copilot', 'lua_ls', 'pyright', 'ts_ls', 'rust_analyzer' }
+  ensure_installed = { 'ty', 'ruff', 'copilot', 'lua_ls', 'ts_ls', 'rust_analyzer' }
 })
 
 -- Diagnostics
@@ -141,8 +141,22 @@ require('sidekick').setup({
 local map = vim.keymap.set
 
 -- Keybinds: LSP
+function format()
+  if vim.fn.executable('ruff') == 1 then
+    local buf = vim.api.nvim_get_current_buf()
+    local filename = vim.api.nvim_buf_get_name(buf)
+    if filename ~= '' then
+      vim.cmd('silent write')
+      vim.fn.system('ruff check --select I --fix ' .. vim.fn.shellescape(filename))
+      vim.cmd('edit!')
+    end
+  end
+
+  vim.lsp.buf.format()
+end
+
 map('n', '<leader>lm', ':Mason<CR>')
-map('n', '<leader>ff', vim.lsp.buf.format)
+map('n', '<leader>ff', format)
 map('n', 'gd', vim.lsp.buf.definition)
 map('n', 'gD', vim.lsp.buf.declaration)
 map('n', 'gr', function() Snacks.picker.lsp_references() end, { nowait = true })
