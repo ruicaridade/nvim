@@ -42,6 +42,9 @@ vim.pack.add({
   'https://github.com/mason-org/mason.nvim',
   'https://github.com/mason-org/mason-lspconfig.nvim',
 
+  -- Formatting & Linting
+  'https://github.com/stevearc/conform.nvim',
+
   -- AI
   'https://github.com/folke/sidekick.nvim',
 
@@ -85,7 +88,33 @@ require('snacks').setup({
 -- LSP
 require('mason').setup()
 require('mason-lspconfig').setup({
-  ensure_installed = { 'ty', 'ruff', 'lua_ls', 'ts_ls', 'rust_analyzer' }
+  ensure_installed = {
+    -- Python
+    'ty',
+    'ruff',
+
+    -- Lua
+    'lua_ls',
+
+    -- Rust
+    'rust_analyzer',
+
+    -- JavaScript
+    'ts_ls',
+    'prettier',
+  }
+})
+
+-- Formatting
+require("conform").setup({
+  formatters_by_ft = {
+    lua = { "stylua" },
+    javascript = { "prettier" },
+  },
+  format_on_save = {
+    timeout_ms = 500,
+    lsp_format = "fallback",
+  },
 })
 
 -- Diagnostics
