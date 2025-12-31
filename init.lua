@@ -43,7 +43,6 @@ vim.pack.add({
   'https://github.com/mason-org/mason-lspconfig.nvim',
 
   -- AI
-  'https://github.com/zbirenbaum/copilot.lua',
   'https://github.com/folke/sidekick.nvim',
 
   -- Cmp
@@ -86,7 +85,7 @@ require('snacks').setup({
 -- LSP
 require('mason').setup()
 require('mason-lspconfig').setup({
-  ensure_installed = { 'ty', 'ruff', 'copilot', 'lua_ls', 'ts_ls', 'rust_analyzer' }
+  ensure_installed = { 'ty', 'ruff', 'lua_ls', 'ts_ls', 'rust_analyzer' }
 })
 
 -- Diagnostics
@@ -119,16 +118,10 @@ require('arrow').setup({
 })
 
 -- AI
-require('copilot').setup({
-  suggestion = {
-    enabled = true,
-    auto_trigger = true,
-    hide_during_completion = false,
-    debounce = 0,
-  },
-})
-vim.g.sidekick_nes = true
 require('sidekick').setup({
+  nes = {
+    enabled = false,
+  },
   cli = {
     mux = {
       backend = 'tmux',
@@ -182,12 +175,6 @@ local sidekick_cli = require('sidekick.cli')
 map({ "n", "x" }, "<leader>af", function() sidekick_cli.send({ msg = "{file}" }) end, { desc = "" })
 map({ "n", "x" }, "<leader>al", function() sidekick_cli.send({ msg = "{selection}" }) end, { desc = "" })
 map({ "n", "t" }, "<leader>aa", function() sidekick_cli.toggle() end, { desc = "Sidekick Toggle" })
-
-local sidekick = require('sidekick')
-map({ "i", "n" }, "<M-n>", function() sidekick.nes_jump_or_apply() end, { desc = "Accept Next Edit Suggestion" })
-
-local copilot = require('copilot.suggestion')
-map({ "i" }, "<M-l>", function() copilot:accept() end, { desc = "Accept Copilot suggestion" })
 
 -- Keybinds: Diagnostics
 map('n', '<leader>sd', function() Snacks.picker.diagnostic() end)
