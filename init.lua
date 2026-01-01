@@ -198,6 +198,10 @@ function format()
   vim.lsp.buf.format()
 end
 
+-- Keybinds: Cmp
+map('i', '<C-@>', function() require('blink.cmp').show() end, { silent = true })
+
+-- Keybinds: LSP
 map('n', '<leader>lm', ':Mason<CR>')
 map('n', '<leader>ff', format)
 map('n', 'gd', vim.lsp.buf.definition)
