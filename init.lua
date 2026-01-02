@@ -92,7 +92,6 @@ require('mason-lspconfig').setup({
   ensure_installed = {
     -- Python
     'ty',
-    'ruff',
 
     -- Lua
     'lua_ls',
@@ -120,6 +119,7 @@ require("conform").setup({
     html = { "prettier" },
     css = { "prettier" },
     scss = { "prettier" },
+    python = { 'black', 'isort' },
   },
   format_on_save = {
     timeout_ms = 500,
