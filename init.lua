@@ -101,7 +101,6 @@ require('mason-lspconfig').setup({
 
     -- JavaScript
     'ts_ls',
-    'prettier',
   }
 })
 
