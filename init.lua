@@ -41,6 +41,7 @@ vim.pack.add({
   'https://github.com/folke/snacks.nvim',
   'https://github.com/nvim-mini/mini.pairs',
   'https://github.com/nvim-mini/mini.icons',
+  'https://github.com/MeanderingProgrammer/render-markdown.nvim',
 
   -- Auto indentation
   'https://github.com/tpope/vim-sleuth',
@@ -79,6 +80,7 @@ vim.cmd('colorscheme rose-pine')
 require('lualine').setup()
 require('mini.pairs').setup()
 require('mini.icons').setup()
+require('render-markdown').setup()
 
 -- Snacks
 require('snacks').setup({
