@@ -23,6 +23,14 @@ vim.o.shiftround = true
 -- Clipboard
 vim.api.nvim_set_option('clipboard', 'unnamedplus')
 
+-- Filetype associations
+vim.filetype.add({
+  extension = {
+    j2 = 'jinja',
+    jinja2 = 'jinja',
+  }
+})
+
 -- Plugins
 vim.pack.add({
   -- Theme
@@ -92,6 +100,7 @@ require('mason-lspconfig').setup({
   ensure_installed = {
     -- Python
     'ty',
+    'jinja_lsp',
 
     -- Lua
     'lua_ls',
