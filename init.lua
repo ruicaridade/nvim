@@ -103,6 +103,7 @@ require('mason-lspconfig').setup({
     -- Python
     'ty',
     'jinja_lsp',
+    'ruff',
 
     -- Lua
     'lua_ls',
