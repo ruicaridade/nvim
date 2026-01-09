@@ -220,6 +220,7 @@ map('n', 'gD', vim.lsp.buf.declaration)
 map('n', 'gr', function() Snacks.picker.lsp_references() end, { nowait = true })
 map('n', '<leader>rn', vim.lsp.buf.rename, { nowait = true })
 map('n', '<leader>ca', vim.lsp.buf.code_action, { nowait = true })
+map('n', '<leader>rr', ':LspRestart<CR>')
 
 -- Keybinds: Find
 map('n', '<leader>sf', function() Snacks.picker.files() end, { desc = 'Search files' })
