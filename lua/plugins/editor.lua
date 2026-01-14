@@ -8,12 +8,22 @@ return {
       statuscolumn = { enabled = true },
       rename = { enabled = true },
       notifier = { enabled = true },
-      picker = { enabled = true },
+      picker = {
+        sources = {
+          explorer = {
+            layout = {
+              layout = {
+                width = 35,
+              },
+            },
+          },
+        },
+      },
       indent = {
         enabled = true,
         animate = { enabled = false },
         scope = { enabled = false },
-      }
+      },
     }
   },
   {
