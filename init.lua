@@ -1,5 +1,3 @@
----@diagnostic disable: undefined-global
-
 -- Misc
 vim.o.swapfile = false
 vim.g.mapleader = ' '
@@ -31,164 +29,27 @@ vim.filetype.add({
   }
 })
 
+-- Bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.uv.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable",
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+
 -- Plugins
-vim.pack.add({
-  -- Theme
-  'https://github.com/rose-pine/neovim',
-  'https://github.com/nvim-lualine/lualine.nvim',
-
-  -- Misc & utilities
-  'https://github.com/folke/snacks.nvim',
-  'https://github.com/nvim-mini/mini.pairs',
-  'https://github.com/nvim-mini/mini.icons',
-  'https://github.com/MeanderingProgrammer/render-markdown.nvim',
-
-  -- Auto indentation
-  'https://github.com/tpope/vim-sleuth',
-
-  -- LSP
-  'https://github.com/neovim/nvim-lspconfig',
-  'https://github.com/mason-org/mason.nvim',
-  'https://github.com/mason-org/mason-lspconfig.nvim',
-
-  -- Formatting & Linting
-  'https://github.com/stevearc/conform.nvim',
-
-  -- AI
-  'https://github.com/folke/sidekick.nvim',
-  'https://github.com/supermaven-inc/supermaven-nvim',
-
-  -- Cmp
-  'https://github.com/saghen/blink.cmp',
-
-  -- Git
-  'https://github.com/lewis6991/gitsigns.nvim',
-
-  -- Navigation
-  'https://github.com/otavioschwanck/arrow.nvim'
-})
-
--- Theme
-require('rose-pine').setup({
-  styles = {
-    transparency = true,
-  }
-})
-vim.cmd('colorscheme rose-pine')
-
--- Misc
-require('lualine').setup()
-require('mini.pairs').setup()
-require('mini.icons').setup()
-require('render-markdown').setup()
-
--- Snacks
-require('snacks').setup({
-  input = { enabled = true },
-  statuscolumn = { enabled = true },
-  rename = { enabled = true },
-  notifier = { enabled = true },
-  picker = { enabled = true },
-  indent = {
-    enabled = true,
-    animate = { enabled = false },
-    scope = { enabled = false },
-  }
-})
-
--- LSP
-require('mason').setup()
-require('mason-lspconfig').setup({
-  ensure_installed = {
-    -- Python
-    'ty',
-    'jinja_lsp',
-    'ruff',
-
-    -- Lua
-    'lua_ls',
-
-    -- Rust
-    'rust_analyzer',
-
-    -- JavaScript
-    'ts_ls',
-  }
-})
-
--- Formatting
-require("conform").setup({
-  formatters_by_ft = {
-    lua = { "stylua" },
-    javascript = { "prettier" },
-    javascriptreact = { "prettier" },
-    typescript = { "prettier" },
-    typescriptreact = { "prettier" },
-    json = { "prettier" },
-    yaml = { "prettier" },
-    markdown = { "prettier" },
-    html = { "prettier" },
-    css = { "prettier" },
-    scss = { "prettier" },
-    python = { 'black', 'isort' },
-  },
-  format_on_save = {
-    timeout_ms = 500,
-    lsp_format = "fallback",
-  },
-})
+require("lazy").setup("plugins")
 
 -- Diagnostics
 vim.o.updatetime = 300
 vim.diagnostic.config({
   virtual_text = false,
-})
-
--- Cmp
-require('blink.cmp').setup({
-  keymap = {
-    preset = 'enter'
-  },
-  appearance = {
-    nerd_font_variant = 'normal'
-  },
-  fuzzy = {
-    implementation = 'lua'
-  }
-})
-
--- Git
-require('gitsigns').setup({
-  current_line_blame = true,
-})
-
--- Harpoon
-require('arrow').setup({
-  leader_key = ';'
-})
-
--- AI
-require('sidekick').setup({
-  nes = {
-    enabled = false,
-  },
-  cli = {
-    mux = {
-      backend = 'tmux',
-      enabled = true,
-    }
-  }
-})
-
-require("supermaven-nvim").setup({
-  keymaps = {
-    accept_suggestion = "<Tab>",
-    clear_suggestion = "<C-]>",
-    accept_word = "<C-j>",
-  },
-  log_level = "info",                -- set to "off" to disable logging completely
-  disable_inline_completion = false, -- disables inline completion for use with cmp
-  disable_keymaps = false,           -- disables built in keymaps for more manual control
 })
 
 -- Keybinds
@@ -237,10 +98,10 @@ map('n', '<leader>gg', function() Snacks.lazygit() end)
 map('n', '<leader>gb', ':Gitsigns blame<CR>')
 
 -- Keybinds: AI
-local sidekick_cli = require('sidekick.cli')
-map({ "n", "x" }, "<leader>af", function() sidekick_cli.send({ msg = "{file}" }) end, { desc = "" })
-map({ "n", "x" }, "<leader>al", function() sidekick_cli.send({ msg = "{selection}" }) end, { desc = "" })
-map({ "n", "t" }, "<leader>aa", function() sidekick_cli.toggle() end, { desc = "Sidekick Toggle" })
+-- local sidekick_cli = require('sidekick.cli')
+-- map({ "n", "x" }, "<leader>af", function() sidekick_cli.send({ msg = "{file}" }) end, { desc = "" })
+-- map({ "n", "x" }, "<leader>al", function() sidekick_cli.send({ msg = "{selection}" }) end, { desc = "" })
+-- map({ "n", "t" }, "<leader>aa", function() sidekick_cli.toggle() end, { desc = "Sidekick Toggle" })
 
 -- Keybinds: Diagnostics
 map('n', '<leader>sd', function() Snacks.picker.diagnostic() end)
