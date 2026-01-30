@@ -45,4 +45,39 @@ return {
       leader_key = ';'
     }
   },
+  {
+    "petertriho/nvim-scrollbar",
+    dependencies = { "lewis6991/gitsigns.nvim" },
+    config = function()
+      local colors = {
+        handle = "#524f67",
+        bg = "#1f1d2e",
+        error = "#eb6f92",
+        warn = "#f6c177",
+        info = "#9ccfd8",
+        hint = "#c4a7e7",
+        git_add = "#9ccfd8",
+        git_change = "#f6c177",
+        git_delete = "#eb6f92",
+      }
+      require("scrollbar").setup({
+        handle = {
+          color = colors.handle,
+        },
+        handlers = {
+          cursor = false,
+        },
+        marks = {
+          Error = { color = colors.error },
+          Warn = { color = colors.warn },
+          Info = { color = colors.info },
+          Hint = { color = colors.hint },
+          GitAdd = { color = colors.git_add },
+          GitChange = { color = colors.git_change },
+          GitDelete = { color = colors.git_delete },
+        },
+      })
+      require("scrollbar.handlers.gitsigns").setup()
+    end,
+  },
 }
