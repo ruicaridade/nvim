@@ -2,12 +2,8 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
-    opts = {
-      ensure_installed = { "elixir", "heex", "eex", "lua", "python", "rust", "javascript", "typescript" },
-      highlight = { enable = true },
-    },
-    config = function(_, opts)
-      require("nvim-treesitter.configs").setup(opts)
+    config = function()
+      require("nvim-treesitter").install({ "elixir", "heex", "eex", "lua", "python", "rust", "javascript", "typescript" })
     end,
   },
   {
