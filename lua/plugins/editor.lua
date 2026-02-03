@@ -4,6 +4,14 @@ return {
     build = function()
       require("nvim-treesitter").install({ "elixir", "heex", "eex", "lua", "python", "rust", "javascript", "typescript" })
     end,
+    config = function()
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = { "elixir", "heex", "eex" },
+        callback = function()
+          vim.treesitter.start()
+        end,
+      })
+    end,
   },
   {
     "folke/snacks.nvim",
