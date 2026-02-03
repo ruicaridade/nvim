@@ -15,6 +15,9 @@ return {
         css = { "prettier" },
         scss = { "prettier" },
         python = { 'black', 'isort' },
+        elixir = { "mix" },
+        heex = { "mix" },
+        eelixir = { "mix" },
       },
       format_on_save = {
         timeout_ms = 500,

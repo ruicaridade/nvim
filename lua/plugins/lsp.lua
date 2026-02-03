@@ -18,6 +18,8 @@ return {
         'rust_analyzer',
         -- JavaScript
         'ts_ls',
+        -- Elixir
+        'elixirls',
       }
     }
   },
