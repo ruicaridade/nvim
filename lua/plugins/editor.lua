@@ -30,6 +30,11 @@ return {
                 width = 35,
               },
             },
+            win = {
+              list = {
+                scrollbar = false,
+              },
+            },
           },
         },
       },
@@ -75,6 +80,10 @@ return {
         git_delete = "#eb6f92",
       }
       require("scrollbar").setup({
+        excluded_filetypes = {
+          "snacks_picker_list",
+          "snacks_picker_preview",
+        },
         handle = {
           color = colors.handle,
         },
