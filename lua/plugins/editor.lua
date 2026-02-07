@@ -6,9 +6,8 @@ return {
     end,
     config = function()
       vim.api.nvim_create_autocmd("FileType", {
-        pattern = { "elixir", "heex", "eex" },
         callback = function()
-          vim.treesitter.start()
+          pcall(vim.treesitter.start)
         end,
       })
     end,
@@ -35,6 +34,7 @@ return {
                 scrollbar = false,
               },
             },
+            exclude = { "_templ.go$" },
           },
         },
       },
