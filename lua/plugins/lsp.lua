@@ -20,7 +20,18 @@ return {
         'ts_ls',
         -- Elixir
         'elixirls',
+        -- Go
+        'gopls',
       }
     }
+  },
+  {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    opts = {
+      ensure_installed = {
+        "goimports",
+        "gofumpt",
+      },
+    },
   },
 }

@@ -15,6 +15,7 @@ return {
         css = { "prettier" },
         scss = { "prettier" },
         python = { 'black', 'isort' },
+        go = { "goimports", "gofumpt" },
         elixir = { "mix" },
         heex = { "mix" },
         eelixir = { "mix" },
