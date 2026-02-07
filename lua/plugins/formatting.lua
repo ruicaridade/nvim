@@ -16,6 +16,7 @@ return {
         scss = { "prettier" },
         python = { 'black', 'isort' },
         go = { "goimports", "gofumpt" },
+        templ = { "templ" },
         elixir = { "mix" },
         heex = { "mix" },
         eelixir = { "mix" },

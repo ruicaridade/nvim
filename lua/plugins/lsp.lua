@@ -22,6 +22,7 @@ return {
         'elixirls',
         -- Go
         'gopls',
+        'templ',
       }
     }
   },
