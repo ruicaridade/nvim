@@ -1,10 +1,15 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    build = function()
-      require("nvim-treesitter").install({ "elixir", "heex", "eex", "lua", "python", "rust", "javascript", "typescript", "go", "gomod", "gosum", "gowork", "templ" })
-    end,
+    branch = "main",
+    lazy = false,
+    build = ":TSUpdate",
     config = function()
+      require("nvim-treesitter").install({
+        "elixir", "heex", "eex", "lua", "python", "rust",
+        "javascript", "typescript", "go", "gomod", "gosum",
+        "gowork", "templ",
+      })
       vim.api.nvim_create_autocmd("FileType", {
         callback = function()
           pcall(vim.treesitter.start)
