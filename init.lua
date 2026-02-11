@@ -72,17 +72,17 @@ function format()
 end
 
 -- Keybinds: Cmp
-map('i', '<C-@>', function() require('blink.cmp').show() end, { silent = true })
+map('i', '<C-@>', function() require('blink.cmp').show() end, { silent = true, desc = "Show completions" })
 
 -- Keybinds: LSP
-map('n', '<leader>lm', ':Mason<CR>')
-map('n', '<leader>ff', format)
-map('n', 'gd', vim.lsp.buf.definition)
-map('n', 'gD', vim.lsp.buf.declaration)
-map('n', 'gr', function() Snacks.picker.lsp_references() end, { nowait = true })
-map('n', '<leader>rn', vim.lsp.buf.rename, { nowait = true })
-map('n', '<leader>ca', vim.lsp.buf.code_action, { nowait = true })
-map('n', '<leader>rr', ':LspRestart<CR>')
+map('n', '<leader>lm', ':Mason<CR>', { desc = "Mason" })
+map('n', '<leader>ff', format, { desc = "Format file" })
+map('n', 'gd', vim.lsp.buf.definition, { desc = "Go to definition" })
+map('n', 'gD', vim.lsp.buf.declaration, { desc = "Go to declaration" })
+map('n', 'gr', function() Snacks.picker.lsp_references() end, { nowait = true, desc = "References" })
+map('n', '<leader>rn', vim.lsp.buf.rename, { nowait = true, desc = "Rename symbol" })
+map('n', '<leader>ca', vim.lsp.buf.code_action, { nowait = true, desc = "Code action" })
+map('n', '<leader>rr', ':LspRestart<CR>', { desc = "Restart LSP" })
 
 -- Keybinds: Find
 map('n', '<leader>sf', function() Snacks.picker.files() end, { desc = 'Search files' })
@@ -92,11 +92,11 @@ map('n', '<leader>ss', function() Snacks.picker.lsp_symbols() end, { desc = 'Sea
 map('n', '<leader>sS', function() Snacks.picker.lsp_workspace_symbols() end, { desc = 'Search Workspace Symbols' })
 
 -- Keybinds: File explorer
-map('n', '<leader>e', function() Snacks.explorer() end)
+map('n', '<leader>e', function() Snacks.explorer() end, { desc = "Explorer" })
 
 -- Keybinds: Git
-map('n', '<leader>gg', function() Snacks.lazygit() end)
-map('n', '<leader>gb', ':Gitsigns blame<CR>')
+map('n', '<leader>gg', function() Snacks.lazygit() end, { desc = "Lazygit" })
+map('n', '<leader>gb', ':Gitsigns blame<CR>', { desc = "Blame" })
 
 -- Keybinds: AI
 -- local sidekick_cli = require('sidekick.cli')
@@ -105,10 +105,10 @@ map('n', '<leader>gb', ':Gitsigns blame<CR>')
 -- map({ "n", "t" }, "<leader>aa", function() sidekick_cli.toggle() end, { desc = "Sidekick Toggle" })
 
 -- Keybinds: Diagnostics
-map('n', '<leader>sd', function() Snacks.picker.diagnostic() end)
-map('n', '<leader>dd', vim.diagnostic.open_float, { noremap = true, silent = true })
-map('n', '<leader>dn', vim.diagnostic.goto_next, { noremap = true, silent = true })
-map('n', '<leader>dp', vim.diagnostic.goto_prev, { noremap = true, silent = true })
+map('n', '<leader>sd', function() Snacks.picker.diagnostic() end, { desc = "Search diagnostics" })
+map('n', '<leader>dd', vim.diagnostic.open_float, { noremap = true, silent = true, desc = "Line diagnostics" })
+map('n', '<leader>dn', vim.diagnostic.goto_next, { noremap = true, silent = true, desc = "Next diagnostic" })
+map('n', '<leader>dp', vim.diagnostic.goto_prev, { noremap = true, silent = true, desc = "Prev diagnostic" })
 
 -- Document highlighting
 map('n', '<leader>hh', function()
