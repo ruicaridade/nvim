@@ -82,7 +82,14 @@ map('n', 'gD', vim.lsp.buf.declaration, { desc = "Go to declaration" })
 map('n', 'gr', function() Snacks.picker.lsp_references() end, { nowait = true, desc = "References" })
 map('n', '<leader>rn', vim.lsp.buf.rename, { nowait = true, desc = "Rename symbol" })
 map('n', '<leader>ca', vim.lsp.buf.code_action, { nowait = true, desc = "Code action" })
-map('n', '<leader>rr', ':LspRestart<CR>', { desc = "Restart LSP" })
+map('n', '<leader>rr', function()
+  local clients = vim.lsp.get_clients({ bufnr = 0 })
+  for _, client in ipairs(clients) do
+    vim.notify('Restarting LSP: ' .. client.name)
+    client:stop()
+  end
+  vim.cmd('edit!')
+end, { desc = "Restart LSP" })
 
 -- Keybinds: Find
 map('n', '<leader>sf', function() Snacks.picker.files() end, { desc = 'Search files' })
