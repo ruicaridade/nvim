@@ -2,7 +2,7 @@
 vim.o.swapfile = false
 vim.g.mapleader = ' '
 vim.o.winborder = "rounded"
-vim.o.cmdheight = 1
+vim.o.cmdheight = 0
 vim.o.autoread = true
 
 -- Text
@@ -99,7 +99,7 @@ map('n', '<leader>ss', function() Snacks.picker.lsp_symbols() end, { desc = 'Sea
 map('n', '<leader>sS', function() Snacks.picker.lsp_workspace_symbols() end, { desc = 'Search Workspace Symbols' })
 
 -- Keybinds: File explorer
-map('n', '<leader>e', function() Snacks.explorer() end, { desc = "Explorer" })
+map('n', '<leader>e', ':Neotree toggle<CR>', { desc = "Explorer" })
 
 -- Keybinds: Git
 map('n', '<leader>gg', function() Snacks.lazygit() end, { desc = "Lazygit" })
@@ -113,7 +113,16 @@ map('n', '<leader>gb', ':Gitsigns blame<CR>', { desc = "Blame" })
 
 -- Keybinds: Diagnostics
 map('n', '<leader>sd', function() Snacks.picker.diagnostic() end, { desc = "Search diagnostics" })
-map('n', '<leader>dd', vim.diagnostic.open_float, { noremap = true, silent = true, desc = "Line diagnostics" })
+local diag_float_win = nil
+map('n', '<leader>dd', function()
+  if diag_float_win and vim.api.nvim_win_is_valid(diag_float_win) then
+    vim.api.nvim_set_current_win(diag_float_win)
+    diag_float_win = nil
+    return
+  end
+  local _, winnr = vim.diagnostic.open_float({ focus = false })
+  diag_float_win = winnr
+end, { noremap = true, silent = true, desc = "Line diagnostics" })
 map('n', '<leader>dn', vim.diagnostic.goto_next, { noremap = true, silent = true, desc = "Next diagnostic" })
 map('n', '<leader>dp', vim.diagnostic.goto_prev, { noremap = true, silent = true, desc = "Prev diagnostic" })
 
