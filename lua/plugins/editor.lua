@@ -25,24 +25,9 @@ return {
       input = { enabled = true },
       statuscolumn = { enabled = true },
       rename = { enabled = true },
-      notifier = { enabled = true },
-      picker = {
-        sources = {
-          explorer = {
-            layout = {
-              layout = {
-                width = 35,
-              },
-            },
-            win = {
-              list = {
-                scrollbar = false,
-              },
-            },
-            exclude = { "_templ.go$" },
-          },
-        },
-      },
+      explorer = { enabled = false },
+      notifier = { enabled = false },
+      picker = {},
       indent = {
         enabled = true,
         animate = { enabled = false },
@@ -88,6 +73,7 @@ return {
         excluded_filetypes = {
           "snacks_picker_list",
           "snacks_picker_preview",
+          "neo-tree",
         },
         handle = {
           color = colors.handle,
