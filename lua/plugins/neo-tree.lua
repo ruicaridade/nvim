@@ -13,6 +13,7 @@ return {
         hide_by_pattern = { "*_templ.go" },
       },
       follow_current_file = { enabled = true },
+      use_libuv_file_watcher = true,
     },
     window = {
       width = 35,
