@@ -77,7 +77,7 @@ map('i', '<C-@>', function() require('blink.cmp').show() end, { silent = true, d
 -- Keybinds: LSP
 map('n', '<leader>lm', ':Mason<CR>', { desc = "Mason" })
 map('n', '<leader>ff', format, { desc = "Format file" })
-map('n', 'gd', vim.lsp.buf.definition, { desc = "Go to definition" })
+map('n', 'gd', function() Snacks.picker.lsp_definitions() end, { desc = "Go to definition" })
 map('n', 'gD', vim.lsp.buf.declaration, { desc = "Go to declaration" })
 map('n', 'gr', function() Snacks.picker.lsp_references() end, { nowait = true, desc = "References" })
 map('n', '<leader>rn', vim.lsp.buf.rename, { nowait = true, desc = "Rename symbol" })

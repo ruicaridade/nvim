@@ -17,7 +17,7 @@ return {
         -- Rust
         'rust_analyzer',
         -- JavaScript
-        'ts_ls',
+        'vtsls',
         -- Elixir
         'elixirls',
         -- Go
