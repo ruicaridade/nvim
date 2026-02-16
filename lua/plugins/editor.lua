@@ -40,7 +40,7 @@ return {
     config = true,
   },
   {
-    "nvim-mini/mini.icons",
+    "nvim-tree/nvim-web-devicons",
     config = true,
   },
   {
