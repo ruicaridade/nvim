@@ -5,6 +5,18 @@ return {
     "nvim-lua/plenary.nvim",
     "MunifTanjim/nui.nvim",
   },
+  config = function(_, opts)
+    require("neo-tree").setup(opts)
+
+    -- Auto-refresh neo-tree when Neovim regains focus (e.g. after lazygit, claude code)
+    vim.api.nvim_create_autocmd("FocusGained", {
+      callback = function()
+        local events = require("neo-tree.events")
+        events.fire_event(events.GIT_EVENT)
+        events.fire_event(events.FS_EVENT)
+      end,
+    })
+  end,
   opts = {
     filesystem = {
       filtered_items = {

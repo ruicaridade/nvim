@@ -126,14 +126,6 @@ end, { noremap = true, silent = true, desc = "Line diagnostics" })
 map('n', '<leader>dn', vim.diagnostic.goto_next, { noremap = true, silent = true, desc = "Next diagnostic" })
 map('n', '<leader>dp', vim.diagnostic.goto_prev, { noremap = true, silent = true, desc = "Prev diagnostic" })
 
--- Keybinds: Scroll (prevent scrolling past last line)
-map({ "n", "v", "i" }, "<ScrollWheelDown>", function()
-  if vim.fn.line("w$") >= vim.fn.line("$") - 1 then
-    return ""
-  end
-  return "<ScrollWheelDown>"
-end, { expr = true, silent = true })
-
 -- Document highlighting
 map('n', '<leader>hh', function()
   vim.lsp.buf.clear_references()

@@ -8,7 +8,8 @@ return {
       require("nvim-treesitter").install({
         "elixir", "heex", "eex", "lua", "python", "rust",
         "javascript", "typescript", "go", "gomod", "gosum",
-        "gowork", "templ",
+        "gowork", "templ", "vim", "vimdoc", "markdown",
+        "markdown_inline",
       })
       vim.api.nvim_create_autocmd("FileType", {
         callback = function()
