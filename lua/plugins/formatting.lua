@@ -14,7 +14,6 @@ return {
         html = { "prettier" },
         css = { "prettier" },
         scss = { "prettier" },
-        python = { 'black', 'isort' },
         go = { "goimports", "gofumpt" },
         templ = { "templ" },
         elixir = { "mix" },
