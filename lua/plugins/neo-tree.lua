@@ -28,7 +28,23 @@ return {
       use_libuv_file_watcher = true,
     },
     window = {
-      width = 35,
+      position = "float",
+      popup = {
+        size = {
+          height = "80%",
+          width = "60%",
+        },
+        position = "50%", -- center on screen
+      },
+    },
+    -- Close the float as soon as a file is opened.
+    event_handlers = {
+      {
+        event = "file_opened",
+        handler = function()
+          require("neo-tree.command").execute({ action = "close" })
+        end,
+      },
     },
   },
 }
