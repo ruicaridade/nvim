@@ -54,6 +54,7 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Plugins
 require("lazy").setup("plugins")
+require("herdr").setup()
 
 -- Diagnostics
 vim.o.updatetime = 300
@@ -113,11 +114,14 @@ map('n', '<leader>e', ':Neotree toggle<CR>', { desc = "Explorer" })
 map('n', '<leader>gg', function() Snacks.lazygit() end, { desc = "Lazygit" })
 map('n', '<leader>gb', ':Gitsigns blame<CR>', { desc = "Blame" })
 
+-- Keybinds: Review
+map('n', '<leader>rr', ':Review open<CR>', { desc = "Review: Open" })
+map('n', '<leader>rp', ':Review commits<CR>', { desc = "Review: Pick Commits" })
+map('n', '<leader>rc', ':Review close<CR>', { desc = "Review: Close" })
+map('n', '<leader>ar', function() require("herdr").send_review() end, { desc = "Review: Send to Herdr agent" })
+
 -- Keybinds: AI
--- local sidekick_cli = require('sidekick.cli')
--- map({ "n", "x" }, "<leader>af", function() sidekick_cli.send({ msg = "{file}" }) end, { desc = "" })
--- map({ "n", "x" }, "<leader>al", function() sidekick_cli.send({ msg = "{selection}" }) end, { desc = "" })
--- map({ "n", "t" }, "<leader>aa", function() sidekick_cli.toggle() end, { desc = "Sidekick Toggle" })
+map({ "n", "x" }, '<leader>as', function() require("herdr").send_context() end, { desc = "Send context to Herdr agent" })
 
 -- Keybinds: Diagnostics
 map('n', '<leader>sd', function() Snacks.picker.diagnostic() end, { desc = "Search diagnostics" })
