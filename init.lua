@@ -115,9 +115,20 @@ map('n', '<leader>gg', function() Snacks.lazygit() end, { desc = "Lazygit" })
 map('n', '<leader>gb', ':Gitsigns blame<CR>', { desc = "Blame" })
 
 -- Keybinds: Review
-map('n', '<leader>rr', ':Review open<CR>', { desc = "Review: Open" })
+map('n', '<leader>ro', ':Review open<CR>', { desc = "Review: Open" })
 map('n', '<leader>rp', ':Review commits<CR>', { desc = "Review: Pick Commits" })
 map('n', '<leader>rc', ':Review close<CR>', { desc = "Review: Close" })
+map('n', '<leader>rb', function()
+  vim.ui.input({ prompt = "Base branch: ", default = "develop" }, function(base)
+    if not base or base == "" then return end
+    local out = vim.fn.systemlist({ "git", "merge-base", base, "HEAD" })
+    if vim.v.shell_error ~= 0 then
+      vim.notify("No merge-base with '" .. base .. "': " .. table.concat(out, " "), vim.log.levels.ERROR, { title = "review.nvim" })
+      return
+    end
+    require("review").open_commits(out[1], "HEAD")
+  end)
+end, { desc = "Review: Diff vs base branch" })
 map('n', '<leader>ar', function() require("herdr").send_review() end, { desc = "Review: Send to Herdr agent" })
 
 -- Keybinds: AI
