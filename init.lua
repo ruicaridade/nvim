@@ -129,6 +129,35 @@ map('n', '<leader>rb', function()
     require("review").open_commits(out[1], "HEAD")
   end)
 end, { desc = "Review: Diff vs base branch" })
+map('n', '<leader>ru', ':Review open<CR>', { desc = "Review: Uncommitted changes" })
+map('n', '<leader>rU', function()
+  local function git(...)
+    local out = vim.fn.systemlist({ "git", ... })
+    if vim.v.shell_error ~= 0 then return nil, table.concat(out, " ") end
+    return out[1]
+  end
+
+  local upstream, err = git("rev-parse", "--abbrev-ref", "--symbolic-full-name", "@{upstream}")
+  if not upstream then
+    local branch = git("rev-parse", "--abbrev-ref", "HEAD")
+    upstream = branch and ("origin/" .. branch) or nil
+    if not upstream or not git("rev-parse", "--verify", "--quiet", upstream) then
+      vim.notify("No upstream for HEAD: " .. (err or "unknown"), vim.log.levels.ERROR, { title = "review.nvim" })
+      return
+    end
+  end
+
+  local base, mb_err = git("merge-base", upstream, "HEAD")
+  if not base then
+    vim.notify("No merge-base with '" .. upstream .. "': " .. (mb_err or ""), vim.log.levels.ERROR, { title = "review.nvim" })
+    return
+  end
+  if base == git("rev-parse", "HEAD") then
+    vim.notify("Nothing unpushed: HEAD matches " .. upstream, vim.log.levels.INFO, { title = "review.nvim" })
+    return
+  end
+  require("review").open_commits(base, "HEAD")
+end, { desc = "Review: Diff vs origin (unpushed)" })
 map('n', '<leader>ar', function() require("herdr").send_review() end, { desc = "Review: Send to Herdr agent" })
 
 -- Keybinds: AI
