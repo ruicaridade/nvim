@@ -194,20 +194,6 @@ function M.send(text, opts)
   end)
 end
 
-function M.send_review()
-  local ok, store = pcall(require, "review.store")
-  if not ok then
-    notify("review.nvim is not loaded", vim.log.levels.ERROR)
-    return
-  end
-  if store.count() == 0 then
-    notify("No review comments to send", vim.log.levels.WARN)
-    return
-  end
-
-  M.send(require("review.export").generate_markdown())
-end
-
 ---@return string|nil context
 ---@return string|nil error
 function M.editor_context()
