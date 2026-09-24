@@ -1,16 +1,25 @@
 return {
   {
-    "rose-pine/neovim",
-    name = "rose-pine",
+    "rebelot/kanagawa.nvim",
+    name = "kanagawa",
+    lazy = true,
+    config = function()
+      require('kanagawa').setup({
+        transparent = true,
+      })
+      vim.cmd('colorscheme kanagawa')
+    end
+  },
+  {
+    "nvim-mini/mini.base16",
+    branch = "stable",
+    lazy = false,
     priority = 1000,
     config = function()
-      require('rose-pine').setup({
-        styles = {
-          transparency = true,
-        }
-      })
-      vim.cmd('colorscheme rose-pine')
-    end
+      if not require('omarchy_theme').setup() then
+        vim.cmd('colorscheme kanagawa')
+      end
+    end,
   },
   {
     "nvim-lualine/lualine.nvim",
