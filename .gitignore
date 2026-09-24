@@ -1,1 +1,3 @@
 lazy-lock.json
+# This config uses lazy.nvim; native vim.pack lockfiles are local leftovers.
+nvim-pack-lock.json
