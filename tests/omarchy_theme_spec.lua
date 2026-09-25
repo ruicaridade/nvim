@@ -39,6 +39,13 @@ for _, name in ipairs({ 'catppuccin-latte', 'solitude', 'kanagawa' }) do
     local fg = luminance(string.format('#%06x', vim.api.nvim_get_hl(0, { name = group, link = false }).fg))
     assert((math.max(fg, bg) + 0.05) / (math.min(fg, bg) + 0.05) >= 4.5, group .. ' needs readable contrast')
   end
+  for group, channel in pairs({ DiffAdd = 2, DiffDelete = 1 }) do
+    local hl = vim.api.nvim_get_hl(0, { name = group, link = false }).bg
+    local rgb = { math.floor(hl / 65536), math.floor(hl / 256) % 256, hl % 256 }
+    for i = 1, 3 do
+      assert(i == channel or rgb[channel] > rgb[i], group .. ' needs a tinted background: ' .. name)
+    end
+  end
   if name == 'solitude' then
     local seen = {}
     for _, group in ipairs({ 'Type', 'Function', 'Keyword', 'String' }) do

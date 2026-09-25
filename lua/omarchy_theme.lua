@@ -27,6 +27,12 @@ local function readable(hex, background)
   end
 end
 
+local function blend(hex, background, alpha)
+  local fg, bg, mixed = rgb(hex), rgb(background), {}
+  for i = 1, 3 do mixed[i] = math.floor(fg[i] * alpha + bg[i] * (1 - alpha) + 0.5) end
+  return string.format('#%02x%02x%02x', unpack(mixed))
+end
+
 local function chromatic(hex)
   if not hex or not hex:match('^#%x%x%x%x%x%x$') then return false end
   local c = rgb(hex)
@@ -80,6 +86,19 @@ function M.setup(opts)
     for _, name in ipairs({ 'Normal', 'NormalNC', 'SignColumn', 'EndOfBuffer' }) do
       local hl = vim.api.nvim_get_hl(0, { name = name, link = false })
       hl.bg = nil
+      vim.api.nvim_set_hl(0, name, hl)
+    end
+    -- mini.base16 puts every diff group on base01, which codediff turns into
+    -- its line and word colors, so tint them with the accents instead.
+    local diff = {
+      DiffAdd = blend(palette.base0B, colors.background, 0.3),
+      DiffDelete = blend(palette.base08, colors.background, 0.3),
+      DiffChange = blend(palette.base0D, colors.background, 0.12),
+      DiffText = blend(palette.base0D, colors.background, 0.3),
+    }
+    for name, bg in pairs(diff) do
+      local hl = vim.api.nvim_get_hl(0, { name = name, link = false })
+      hl.bg = bg
       vim.api.nvim_set_hl(0, name, hl)
     end
     vim.g.colors_name = 'omarchy'
