@@ -28,6 +28,16 @@ return {
           count_untracked = true,
         },
       },
+      keymaps = {
+        view = {
+          -- Match the global Neo-tree toggle. codediff binds <leader>e to a
+          -- focus that can show the explorer but never hide it.
+          toggle_explorer = "<leader>e",
+          focus_explorer = false,
+          next_file = { "]f", "<Tab>" },
+          prev_file = { "[f", "<S-Tab>" },
+        },
+      },
     },
   },
 }
